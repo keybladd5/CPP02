@@ -28,7 +28,7 @@ class Fixed
 			Fixed(int const);
 			Fixed(float const);
 			Fixed(Fixed const&);
-			Fixed &operator=(Fixed const &);
+			Fixed	&operator=(Fixed const &);
 			int		getRawBits(void) const;
 			void 	setRawBits(int const);
 			float	toFloat(void) const;
@@ -47,10 +47,10 @@ class Fixed
 			Fixed	operator++(int);
 			Fixed&	operator--();
 			Fixed	operator--(int);
-			Fixed&	min(Fixed &f_val, Fixed &s_val);
-			Fixed	const&	min(Fixed const &f_val, Fixed const &s_val);
-			Fixed&	Fixed::max(Fixed &f_val, Fixed &s_val);
-			Fixed	const& Fixed::max(Fixed const &f_val, Fixed const &s_val);
+			static Fixed&	min(Fixed &f_val, Fixed &s_val);
+			static Fixed const	&min(Fixed const &f_val, Fixed const &s_val);
+			static Fixed&	max(Fixed &f_val, Fixed &s_val);
+			static Fixed const	&max(Fixed const &f_val, Fixed const &s_val);
 			~Fixed();
 };
 

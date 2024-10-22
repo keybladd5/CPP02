@@ -14,31 +14,31 @@
 
 Fixed::Fixed(void)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 	_fixedPoint = 0;
 }
 
 Fixed::Fixed(Fixed const &src)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 }
 
 Fixed::Fixed(int const value)
 {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	_fixedPoint = value << _fractional;
 }
 
 Fixed::Fixed(float const value)
 {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	_fixedPoint = roundf(value * (1 << _fractional));
 }
 
 Fixed &Fixed::operator=(Fixed const &src)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	//std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &src)
 		_fixedPoint = src.getRawBits();
 	return (*this);
@@ -46,12 +46,12 @@ Fixed &Fixed::operator=(Fixed const &src)
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 int		Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	//std::cout << "getRawBits member function called" << std::endl;
 	return (_fixedPoint);
 }
 
@@ -146,13 +146,16 @@ Fixed&	Fixed::operator++()
 	return (*this);
 }
 
-//caso especial para el compilador, sobrecarga posfija
-//Return a temp version modifi 
+// Special case for the compiler, postfix overload
+// Return a temporary modified version
+// Create a copy to return
+// Modify the original
+// Return the unmodified copy
 Fixed	Fixed::operator++(int)
 {
-	Fixed tmp(*this);//crea una copia para retornar
-	++(*this);//modifica el original
-	return (tmp);//retorna la copia sin modificar
+	Fixed tmp(*this);
+	++(*this);
+	return (tmp);
 }
 
 Fixed&	Fixed::operator--()
@@ -161,7 +164,7 @@ Fixed&	Fixed::operator--()
 	return (*this);
 }
 
-//caso especial para el compilador, sobrecarga posfija
+//special case
 Fixed	Fixed::operator--(int)
 {
 	Fixed tmp(*this);
@@ -174,7 +177,7 @@ Fixed&	Fixed::min(Fixed &f_val, Fixed &s_val)
 	return (f_val < s_val ? f_val : s_val);
 }
 
-Fixed const& Fixed::min(Fixed const &f_val, Fixed const &s_val)
+Fixed const &Fixed::min(Fixed const &f_val, Fixed const &s_val)
 {
 	return (f_val < s_val ? f_val : s_val);
 }
@@ -183,7 +186,7 @@ Fixed&	Fixed::max(Fixed &f_val, Fixed &s_val)
 	return (f_val > s_val ? f_val : s_val);
 }
 
-Fixed const& Fixed::max(Fixed const &f_val, Fixed const &s_val)
+Fixed const &Fixed::max(Fixed const &f_val, Fixed const &s_val)
 {
 	return (f_val > s_val ? f_val : s_val);
 }
