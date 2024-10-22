@@ -9,7 +9,7 @@
 /*   Updated: 2024/10/16 18:57:48 by polmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <ieee754.h>
+
 #include "Fixed.hpp"
 
 Fixed::Fixed(void)
@@ -21,10 +21,9 @@ Fixed::Fixed(void)
 Fixed::Fixed(Fixed &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	//_fixedPoint = src._fixedPoint;
-	*this = src; //this is an actual call to the '=' overload
+	*this = src; 
 }
-//para hacer correctamente este overload hay que acceder al dato de _fixedPoint con el geter
+
 Fixed &Fixed::operator=(Fixed &src)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
@@ -38,13 +37,13 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-int		Fixed::getRawBits(void)
+int		Fixed::getRawBits(void)	const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (_fixedPoint);
 }
 
-void 	Fixed::setRawBits(int const num)
+void 	Fixed::setRawBits(int const raw)
 {
-	_fixedPoint = num;
+	_fixedPoint = raw;
 }

@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	fixedPoint
+NAME	=	fixedPoint01
 
 CC		=	c++
 
@@ -39,15 +39,15 @@ all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
 		@$(CC) $(FLAGS) $(OBJ) -o $(NAME) 
-		@echo "${PURPLE}CPP01 ex00 binary Compiled${NC}"
+		@echo "${PURPLE}CPP01 ex01 binary Compiled${NC}"
 
 clean:
 		@rm -rf $(OBJ) $(DEPS)
-		@echo "${RED}CPP01 ex00 object removed${NC}"
+		@echo "${RED}CPP01 ex01 object removed${NC}"
 
 fclean:		clean
 		@rm -rf $(NAME)
-		@echo "${RED}CPP01 ex00 binary removed${NC}"
+		@echo "${RED}CPP01 ex01 binary removed${NC}"
 
 re:		fclean all
 
