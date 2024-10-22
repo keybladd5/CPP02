@@ -77,3 +77,113 @@ std::ostream& operator<<(std::ostream &os, Fixed const &in)
 	os << in.toFloat();
 	return os;
 }
+
+bool	Fixed::operator>(Fixed const &other) const
+{
+	if(this->getRawBits() > other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator<(Fixed const &other) const
+{
+	if(this->getRawBits() < other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator>=(Fixed const &other) const
+{
+	if(this->getRawBits() >= other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator<=(Fixed const &other) const
+{
+	if(this->getRawBits() <= other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator==(Fixed const &other) const
+{
+	if(this->getRawBits() == other.getRawBits())
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator!=(Fixed const &other) const
+{
+	if(this->getRawBits() != other.getRawBits())
+		return (true);
+	return (false);
+}
+
+Fixed Fixed::operator+(Fixed const &other)
+{
+	return (Fixed(toFloat() + other.toFloat()));
+}
+
+Fixed	Fixed::operator-(Fixed const &other)
+{
+	return (Fixed(toFloat() - other.toFloat()));
+}
+
+Fixed	Fixed::operator*(Fixed const &other)
+{
+	return (Fixed(toFloat() * other.toFloat()));
+}
+
+Fixed	Fixed::operator/(Fixed const &other)
+{
+	return (Fixed(toFloat() / other.toFloat()));
+}
+
+Fixed&	Fixed::operator++()
+{
+	++_fixedPoint;
+	return (*this);
+}
+
+//caso especial para el compilador, sobrecarga posfija
+//Return a temp version modifi 
+Fixed	Fixed::operator++(int)
+{
+	Fixed tmp(*this);//crea una copia para retornar
+	++(*this);//modifica el original
+	return (tmp);//retorna la copia sin modificar
+}
+
+Fixed&	Fixed::operator--()
+{
+	--_fixedPoint;
+	return (*this);
+}
+
+//caso especial para el compilador, sobrecarga posfija
+Fixed	Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	--(*this);
+	return (tmp);
+}
+
+Fixed&	Fixed::min(Fixed &f_val, Fixed &s_val)
+{
+	return (f_val < s_val ? f_val : s_val);
+}
+
+Fixed const& Fixed::min(Fixed const &f_val, Fixed const &s_val)
+{
+	return (f_val < s_val ? f_val : s_val);
+}
+Fixed&	Fixed::max(Fixed &f_val, Fixed &s_val)
+{
+	return (f_val > s_val ? f_val : s_val);
+}
+
+Fixed const& Fixed::max(Fixed const &f_val, Fixed const &s_val)
+{
+	return (f_val > s_val ? f_val : s_val);
+}
